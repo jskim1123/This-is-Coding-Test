@@ -20,14 +20,15 @@ N개의 자연수가 있을 때, 한 인덱스의 숫자를 최대 K번까지 �
 
 [아이디어]
 
-가장 큰 수를 K번, 그 다음으로 큰 수를 1번 더하는 연산을 반복한다.
+가장 큰 수가 K번, 그 다음으로 큰 수가 1번 등장하는 수열 S가 반복된다.
+S의 길이는 K + 1이므로, M을 K + 1으로 나눈 몫에 K를 곱하면 가장 큰 수의 개수를 알 수 있다.
+M이 K + 1으로 나누어 떨어지지 않는 경우를 고려해 M % (K + 1)을 더한다.
 
 '''
 
 import sys
 
 firstPlusNum = 0 ### 가장 큰 수의 개수
-plusNum = 0 ### 더하는 수의 개수
 sum = 0 ### 수의 합
 
 N, M, K = map(int, sys.stdin.readline().strip().split(" "))
@@ -37,20 +38,7 @@ firstNum = max(numList) ### 가장 큰 수
 numList.remove(firstNum)
 secondNum = max(numList) ### 두번째로 큰 수
 
-while plusNum < M :
-    
-    if firstPlusNum < 3 :
-        sum += firstNum
-        firstPlusNum += 1
-    
-    else :
-        sum += secondNum
-        firstPlusNum = 0
-        
-    plusNum += 1
-    
+firstPlusNum = (M // (K + 1)) * K + (M % (K + 1)) ### 가장 큰 수의 개수 구하기
+sum = firstPlusNum * firstNum + (M - firstPlusNum) * secondNum
+
 print(sum)
-    
-
-
-
