@@ -21,7 +21,7 @@ N x N 공간을 벗어나는 움직임을 무시할 때, 상하좌우 명령을 
 
 [아이디어]
 
-각 행의 최솟값 중에서 최댓값을 구한다.
+공간을 벗어나는 경우는 continue로 넘기자.
 
 '''
 
@@ -51,6 +51,7 @@ for direction in directionDeque :
         idx = 3
     else :
         continue
+    
     currentRow += rowVector[idx]
     currentCol += colVector[idx]
 
